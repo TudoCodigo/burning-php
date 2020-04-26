@@ -1,0 +1,15 @@
+Testing burning_capture_return() inside a ternary.
+---
+<?php
+
+is_int(123) ? is_int(123) : is_int(123);
+$var = is_int(123) ? is_int(123) : is_int(123);
+$var += is_int(123) ? is_int(123) : is_int(123);
+is_int(123) ?: is_int(123);
+---
+<?php
+
+\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 2, true, \is_int(123));
+$var = \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 4, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
+$var += \burning_capture_return('{{__FILE__}}', 6, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 7, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 8, true, \is_int(123));
+\burning_capture_return('{{__FILE__}}', 9, true, \is_int(123)) ?: \burning_capture_return('{{__FILE__}}', 10, true, \is_int(123));

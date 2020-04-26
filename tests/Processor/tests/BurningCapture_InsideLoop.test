@@ -1,0 +1,20 @@
+Testing burning_capture_return() inside a loop.
+---
+<?php
+
+for (;;) {
+    is_int(123);
+}
+
+foreach ([] as $a) {
+    is_int(123);
+}
+---
+<?php
+
+for (;;) {
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+}
+foreach ([] as $a) {
+    \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+}

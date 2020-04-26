@@ -1,0 +1,9 @@
+Testing MagicConst __FILE__
+---
+<?php
+
+is_file(__FILE__);
+---
+<?php
+
+\burning_capture_return('{{__FILE__}}', 0, true, \is_file('{{__FILE__}}'));

@@ -1,0 +1,56 @@
+Testing burning_capture_return() inside a if().
+---
+<?php
+
+if (is_file('foo')) {
+}
+
+class Test {
+    public function test() {
+        if (is_file('foo')) {
+        }
+
+        if (!is_file('foo')) {
+        }
+
+        if (is_file('foo') || !is_file('foo')) {
+        }
+
+        if (is_file('foo') || !is_file('foo') || is_file('foo')) {
+        }
+        elseif (is_file('foo')) {
+            is_file('foo');
+        }
+        else {
+            is_file('foo');
+        }
+
+        if (!$var) {
+        }
+    }
+}
+---
+<?php
+
+if (\burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'))) {
+}
+class Test
+{
+    public function test()
+    {
+        if (\burning_capture_return('{{__FILE__}}', 1, true, \is_file('foo'))) {
+        }
+        if (!\burning_capture_return('{{__FILE__}}', 2, true, \is_file('foo'))) {
+        }
+        if (\burning_capture_return('{{__FILE__}}', 3, true, \is_file('foo')) || !\burning_capture_return('{{__FILE__}}', 4, true, \is_file('foo'))) {
+        }
+        if (\burning_capture_return('{{__FILE__}}', 5, true, \is_file('foo')) || !\burning_capture_return('{{__FILE__}}', 6, true, \is_file('foo')) || \burning_capture_return('{{__FILE__}}', 7, true, \is_file('foo'))) {
+        } elseif (\burning_capture_return('{{__FILE__}}', 8, true, \is_file('foo'))) {
+            \burning_capture_return('{{__FILE__}}', 9, true, \is_file('foo'));
+        } else {
+            \burning_capture_return('{{__FILE__}}', 10, true, \is_file('foo'));
+        }
+        if (!$var) {
+        }
+    }
+}

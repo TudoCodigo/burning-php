@@ -1,0 +1,78 @@
+{
+    "disableXdebug": true,
+
+    "returnsBooleanFunctions": [
+        "is_null",
+        "is_resource",
+        "is_bool",
+        "is_long",
+        "is_float",
+        "is_int",
+        "is_integer",
+        "is_double",
+        "is_real",
+        "is_numeric",
+        "is_string",
+        "is_array",
+        "is_callable",
+        "is_scalar",
+        "is_object",
+
+        "is_writable",
+        "is_writeable",
+        "is_readable",
+        "is_executable",
+        "is_uploaded_file",
+        "is_file",
+        "is_dir",
+        "is_link",
+
+        "file_exists",
+
+        "is_finite",
+        "is_infinite",
+        "is_nan",
+
+        "is_iterable",
+        "is_countable",
+
+        "is_a",
+        "is_subclass_of",
+
+        "in_array",
+        "array_key_exists",
+        "key_exists",
+
+        "str_starts_with",
+        "str_ends_with",
+        "str_contains",
+
+        "defined",
+
+        "method_exists",
+        "property_exists",
+        "trait_exists",
+        "class_exists",
+        "interface_exists",
+        "function_exists",
+
+        "checkdate",
+
+        "hash_equals",
+
+        "password_needs_rehash",
+        "password_verify",
+
+        "stream_is_local",
+        "stream_isatty",
+
+        "extension_loaded",
+
+        "dns_check_record",
+        "checkdnsrr",
+        "getmxrr"
+    ],
+
+    "sessionLastDirectoryEnabled": true,
+    "sessionDirectoryFormat": "session-%s"
+}

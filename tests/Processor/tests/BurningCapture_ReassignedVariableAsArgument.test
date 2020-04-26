@@ -1,0 +1,11 @@
+Testing burning_capture_return() passing a variable as argument
+---
+<?php
+
+$arr = 'foo';
+is_file($arr = 'bar');
+---
+<?php
+
+$arr = 'foo';
+\burning_capture_return('{{__FILE__}}', 0, true, \is_file($arr = 'bar'));

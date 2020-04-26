@@ -1,0 +1,21 @@
+Testing burning_capture_return() inside a class.
+---
+<?php
+
+class Test {
+    public function test() {
+        \is_file('foo');
+        is_file('foo');
+    }
+}
+---
+<?php
+
+class Test
+{
+    public function test()
+    {
+        \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
+        \burning_capture_return('{{__FILE__}}', 1, true, \is_file('foo'));
+    }
+}

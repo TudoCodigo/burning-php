@@ -1,0 +1,25 @@
+Testing burning_capture_return() inside a function.
+---
+<?php
+
+function test() {
+    \is_file('foo');
+    is_file('foo');
+}
+
+call(is_int(123));
+
+return is_int(123);
+
+$this->call(is_int(123));
+---
+<?php
+
+function test()
+{
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
+    \burning_capture_return('{{__FILE__}}', 1, true, \is_file('foo'));
+}
+\call(\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)));
+return \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123));
+$this->call(\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123)));

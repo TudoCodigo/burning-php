@@ -1,0 +1,26 @@
+Testing burning_capture_return() inside a namespace with a local function.
+---
+<?php
+
+namespace Test\Subtest;
+
+function is_file($str) {
+}
+
+function test() {
+     \is_file('foo');
+     is_file('foo'); // not the global one
+}
+---
+<?php
+
+namespace Test\Subtest;
+
+function is_file($str)
+{
+}
+function test()
+{
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
+    \burning_capture_return('{{__FILE__}}', 1, !function_exists('Test\\Subtest\\is_file'), is_file('foo'));
+}

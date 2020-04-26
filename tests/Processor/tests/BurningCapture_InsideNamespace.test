@@ -1,0 +1,20 @@
+Testing burning_capture_return() inside a namespace.
+---
+<?php
+
+namespace Test;
+
+function test() {
+     \is_file('foo');
+     is_file('foo');
+}
+---
+<?php
+
+namespace Test;
+
+function test()
+{
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
+    \burning_capture_return('{{__FILE__}}', 1, !function_exists('Test\\is_file'), is_file('foo'));
+}
