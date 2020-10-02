@@ -50,9 +50,15 @@ class ExpressionStatement
         else if ($node instanceof Node\Stmt\Echo_) {
             $node->exprs = self::applyStatements($scopeManager, $node->exprs, self::class);
         }
-        else if ($node instanceof Node\Expr\Variable &&
-                 $node->name instanceof Node) {
-            $node->name = self::apply($scopeManager, $node->name);
+        else if ($node instanceof Node\Expr\Variable) {
+            if ($node->name instanceof Node) {
+                $node->name = self::apply($scopeManager, $node->name);
+            }
+        }
+        else if ($node instanceof Node\Stmt\Static_) {
+            foreach ($node->vars as $var) {
+                $var->default = self::apply($scopeManager, $var->default);
+            }
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??

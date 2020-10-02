@@ -48,6 +48,8 @@ ${is_int(123)} = $x;
 $x = ${is_int(123)};
 
 global ${is_int(123)};
+
+static $x = is_int(123);
 ---
 <?php
 
@@ -80,3 +82,4 @@ echo \burning_capture_return('{{__FILE__}}', 25, true, \is_int(123));
 ${\burning_capture_return('{{__FILE__}}', 26, true, \is_int(123))} = $x;
 $x = ${\burning_capture_return('{{__FILE__}}', 27, true, \is_int(123))};
 global ${\burning_capture_return('{{__FILE__}}', 28, true, \is_int(123))};
+static $x = \burning_capture_return('{{__FILE__}}', 29, true, \is_int(123));
