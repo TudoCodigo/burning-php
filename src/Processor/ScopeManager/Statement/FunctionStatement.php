@@ -34,13 +34,22 @@ class FunctionStatement
                 }
             }
         }
-        else if ($node instanceof Node\Expr\MethodCall) {
+        else if ($node instanceof Node\Expr\MethodCall ||
+                 $node instanceof Node\Expr\NullsafeMethodCall) {
+            $node->var  = ExpressionStatement::apply($scopeManager, $node->var);
+            $node->name = ExpressionStatement::apply($scopeManager, $node->name);
+
             foreach ($node->args as $arg) {
                 $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
             }
         }
         else if ($node instanceof Node\Expr\ArrowFunction) {
             $node->expr = ExpressionStatement::apply($scopeManager, $node->expr);
+        }
+        else if ($node instanceof Node\Expr\PropertyFetch ||
+                 $node instanceof Node\Expr\NullsafePropertyFetch) {
+            $node->var  = ExpressionStatement::apply($scopeManager, $node->var);
+            $node->name = ExpressionStatement::apply($scopeManager, $node->name);
         }
 
         return null;

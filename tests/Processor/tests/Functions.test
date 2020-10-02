@@ -18,6 +18,14 @@ fn($x) => is_int(123);
 return function () {
     is_int(123);
 };
+
+is_int(123)?->b(is_int(123));
+
+$x->{is_int(123)}();
+$x?->{is_int(123)}();
+
+$x->{is_int(123)};
+$x?->{is_int(123)};
 ---
 <?php
 
@@ -33,3 +41,8 @@ fn($x) => \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
 return function () {
     \burning_capture_return('{{__FILE__}}', 6, true, \is_int(123));
 };
+\burning_capture_return('{{__FILE__}}', 7, true, \is_int(123))?->b(\burning_capture_return('{{__FILE__}}', 8, true, \is_int(123)));
+$x->{\burning_capture_return('{{__FILE__}}', 9, true, \is_int(123))}();
+$x?->{\burning_capture_return('{{__FILE__}}', 10, true, \is_int(123))}();
+$x->{\burning_capture_return('{{__FILE__}}', 11, true, \is_int(123))};
+$x?->{\burning_capture_return('{{__FILE__}}', 12, true, \is_int(123))};
