@@ -17,8 +17,16 @@ class ExpressionStatement
             $node instanceof Node\Expr\Clone_ ||
             $node instanceof Node\Expr\Empty_ ||
             $node instanceof Node\Expr\ErrorSuppress ||
-            $node instanceof Node\Stmt\Return_) {
+            $node instanceof Node\Stmt\Return_ ||
+            $node instanceof Node\Expr\Eval_ ||
+            $node instanceof Node\Expr\Exit_ ||
+            $node instanceof Node\Expr\Include_ ||
+            $node instanceof Node\Expr\Print_) {
             $node->expr = self::apply($scopeManager, $node->expr);
+        }
+        else if ($node instanceof Node\Expr\Isset_ ||
+                 $node instanceof Node\Stmt\Unset_) {
+            $node->vars = self::applyStatements($scopeManager, $node->vars, self::class);
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
