@@ -15,7 +15,8 @@ class ArrayStatement
         if ($node instanceof Node\Expr\ArrayDimFetch) {
             $node->dim = ExpressionStatement::apply($scopeManager, $node->dim);
         }
-        else if ($node instanceof Node\Expr\Array_) {
+        else if ($node instanceof Node\Expr\Array_||
+                 $node instanceof Node\Expr\List_) {
             $node->items = self::applyStatements($scopeManager, $node->items, ExpressionStatement::class);
         }
         else if ($node instanceof Node\Expr\ArrayItem) {
