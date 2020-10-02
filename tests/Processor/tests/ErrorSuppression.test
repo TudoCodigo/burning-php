@@ -1,9 +1,0 @@
-Tests with error suppression.
----
-<?php
-
-@is_int(123);
----
-<?php
-
-@\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));

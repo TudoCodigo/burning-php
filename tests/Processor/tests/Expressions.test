@@ -1,0 +1,21 @@
+Tests with general expressions.
+---
+<?php
+
+(int) is_int(123);
+
+clone is_int(123);
+
+empty($arr[is_int(123)]);
+
+@is_int(123);
+
+return is_int(123);
+---
+<?php
+
+(int) \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+clone \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+empty($arr[\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123))]);
+@\burning_capture_return('{{__FILE__}}', 3, true, \is_int(123));
+return \burning_capture_return('{{__FILE__}}', 4, true, \is_int(123));

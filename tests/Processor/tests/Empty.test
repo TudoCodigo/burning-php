@@ -1,9 +1,0 @@
-Tests with empty.
----
-<?php
-
-empty($arr[is_int(123)]);
----
-<?php
-
-empty($arr[\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123))]);

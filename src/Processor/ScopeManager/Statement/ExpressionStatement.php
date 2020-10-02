@@ -12,7 +12,12 @@ class ExpressionStatement
 {
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
-        if ($node instanceof Node\Stmt\Expression) {
+        if ($node instanceof Node\Stmt\Expression ||
+            $node instanceof Node\Expr\Cast ||
+            $node instanceof Node\Expr\Clone_ ||
+            $node instanceof Node\Expr\Empty_ ||
+            $node instanceof Node\Expr\ErrorSuppress ||
+            $node instanceof Node\Stmt\Return_) {
             $node->expr = self::apply($scopeManager, $node->expr);
         }
 
@@ -22,12 +27,7 @@ class ExpressionStatement
                LoopStatement::apply($scopeManager, $node) ??
                BooleanStatement::apply($scopeManager, $node) ??
                AssignStatement::apply($scopeManager, $node) ??
-               ReturnStatement::apply($scopeManager, $node) ??
                ArrayStatement::apply($scopeManager, $node) ??
-               CastStatement::apply($scopeManager, $node) ??
-               CloneStatement::apply($scopeManager, $node) ??
-               EmptyStatement::apply($scopeManager, $node) ??
-               ErrorSupressStatement::apply($scopeManager, $node) ??
                $node;
     }
 }

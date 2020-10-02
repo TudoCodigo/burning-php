@@ -1,9 +1,0 @@
-Tests with casts.
----
-<?php
-
-(int) is_int(123);
----
-<?php
-
-(int) \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
