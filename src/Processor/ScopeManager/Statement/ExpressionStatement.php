@@ -26,6 +26,7 @@ class ExpressionStatement
                ArrayStatement::apply($scopeManager, $node) ??
                CastStatement::apply($scopeManager, $node) ??
                CloneStatement::apply($scopeManager, $node) ??
+               EmptyStatement::apply($scopeManager, $node) ??
                $node;
     }
 }
