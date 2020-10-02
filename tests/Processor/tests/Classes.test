@@ -24,14 +24,14 @@ class Test
 {
     public function test()
     {
-        \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
-        \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+        \burning_capture_function_return('{{__FILE__}}', 0, true, \is_int(123));
+        \burning_capture_function_return('{{__FILE__}}', 1, true, \is_int(123));
     }
 }
-new \x(\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)));
-new $arr[\burning_capture_return('{{__FILE__}}', 3, true, \is_int(123))]();
-const X = \burning_capture_return('{{__FILE__}}', 4, true, \is_int(123));
+new \x(\burning_capture_function_return('{{__FILE__}}', 2, true, \is_int(123)));
+new $arr[\burning_capture_function_return('{{__FILE__}}', 3, true, \is_int(123))]();
+const X = \burning_capture_function_return('{{__FILE__}}', 4, true, \is_int(123));
 class Test
 {
-    const X = \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
+    const X = \burning_capture_function_return('{{__FILE__}}', 5, true, \is_int(123));
 }

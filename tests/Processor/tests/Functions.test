@@ -37,22 +37,22 @@ declare (x=is_int(123)) {
 
 function test()
 {
-    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
-    \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 0, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 1, true, \is_int(123));
 }
-\call(\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)));
-return \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123));
-$this->call(\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123)));
-fn($x) => \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
+\call(\burning_capture_function_return('{{__FILE__}}', 2, true, \is_int(123)));
+return \burning_capture_function_return('{{__FILE__}}', 3, true, \is_int(123));
+$this->call(\burning_capture_function_return('{{__FILE__}}', 4, true, \is_int(123)));
+fn($x) => \burning_capture_function_return('{{__FILE__}}', 5, true, \is_int(123));
 return function () {
-    \burning_capture_return('{{__FILE__}}', 6, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 6, true, \is_int(123));
 };
-\burning_capture_return('{{__FILE__}}', 7, true, \is_int(123))?->b(\burning_capture_return('{{__FILE__}}', 8, true, \is_int(123)));
-$x->{\burning_capture_return('{{__FILE__}}', 9, true, \is_int(123))}();
-$x?->{\burning_capture_return('{{__FILE__}}', 10, true, \is_int(123))}();
-$x->{\burning_capture_return('{{__FILE__}}', 11, true, \is_int(123))};
-$x?->{\burning_capture_return('{{__FILE__}}', 12, true, \is_int(123))};
-\burning_capture_return('{{__FILE__}}', 13, true, \is_int(123))::{\burning_capture_return('{{__FILE__}}', 14, true, \is_int(123))}(\burning_capture_return('{{__FILE__}}', 15, true, \is_int(123)));
-declare (x=\burning_capture_return('{{__FILE__}}', 16, true, \is_int(123))) {
-    \burning_capture_return('{{__FILE__}}', 17, true, \is_int(123));
+\burning_capture_function_return('{{__FILE__}}', 7, true, \is_int(123))?->b(\burning_capture_function_return('{{__FILE__}}', 8, true, \is_int(123)));
+$x->{\burning_capture_function_return('{{__FILE__}}', 9, true, \is_int(123))}();
+$x?->{\burning_capture_function_return('{{__FILE__}}', 10, true, \is_int(123))}();
+$x->{\burning_capture_function_return('{{__FILE__}}', 11, true, \is_int(123))};
+$x?->{\burning_capture_function_return('{{__FILE__}}', 12, true, \is_int(123))};
+\burning_capture_function_return('{{__FILE__}}', 13, true, \is_int(123))::{\burning_capture_function_return('{{__FILE__}}', 14, true, \is_int(123))}(\burning_capture_function_return('{{__FILE__}}', 15, true, \is_int(123)));
+declare (x=\burning_capture_function_return('{{__FILE__}}', 16, true, \is_int(123))) {
+    \burning_capture_function_return('{{__FILE__}}', 17, true, \is_int(123));
 }

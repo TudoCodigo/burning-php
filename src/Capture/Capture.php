@@ -26,7 +26,7 @@ class Capture
             ]));
         }
 
-        return $builderFactory->funcCall('\\burning_capture_return', [
+        return $builderFactory->funcCall('\\burning_capture_function_return', [
             $builderFactory->val($scopeManager->processorFile->sourceOriginalPath),
             $builderFactory->val($statementIndex),
             $isReallyGlobalArgument ?? $builderFactory->val(true),

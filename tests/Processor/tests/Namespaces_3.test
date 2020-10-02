@@ -21,6 +21,6 @@ function is_file($str)
 }
 function test()
 {
-    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
-    \burning_capture_return('{{__FILE__}}', 1, !function_exists('Test\\Subtest\\is_int'), is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 0, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 1, !function_exists('Test\\Subtest\\is_int'), is_int(123));
 }

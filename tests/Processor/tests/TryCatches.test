@@ -15,9 +15,9 @@ finally {
 <?php
 
 try {
-    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 0, true, \is_int(123));
 } catch (\Exception $x) {
-    \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 1, true, \is_int(123));
 } finally {
-    \burning_capture_return('{{__FILE__}}', 2, true, \is_int(123));
+    \burning_capture_function_return('{{__FILE__}}', 2, true, \is_int(123));
 }

@@ -15,11 +15,11 @@ yield from is_int(123);
 ---
 <?php
 
-$arr[\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123))];
-$arr[\burning_capture_return('{{__FILE__}}', 1, true, \is_int(123))] = 123;
-$arr[] = [\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)) => \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123))];
-list(\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123))) = \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
-(yield \burning_capture_return('{{__FILE__}}', 6, true, \is_int(123)));
-$x = (yield \burning_capture_return('{{__FILE__}}', 7, true, \is_int(123)) => \burning_capture_return('{{__FILE__}}', 8, true, \is_int(123)));
-$x = (yield \burning_capture_return('{{__FILE__}}', 9, true, \is_int(123)));
-yield from \burning_capture_return('{{__FILE__}}', 10, true, \is_int(123));
+$arr[\burning_capture_function_return('{{__FILE__}}', 0, true, \is_int(123))];
+$arr[\burning_capture_function_return('{{__FILE__}}', 1, true, \is_int(123))] = 123;
+$arr[] = [\burning_capture_function_return('{{__FILE__}}', 2, true, \is_int(123)) => \burning_capture_function_return('{{__FILE__}}', 3, true, \is_int(123))];
+list(\burning_capture_function_return('{{__FILE__}}', 4, true, \is_int(123))) = \burning_capture_function_return('{{__FILE__}}', 5, true, \is_int(123));
+(yield \burning_capture_function_return('{{__FILE__}}', 6, true, \is_int(123)));
+$x = (yield \burning_capture_function_return('{{__FILE__}}', 7, true, \is_int(123)) => \burning_capture_function_return('{{__FILE__}}', 8, true, \is_int(123)));
+$x = (yield \burning_capture_function_return('{{__FILE__}}', 9, true, \is_int(123)));
+yield from \burning_capture_function_return('{{__FILE__}}', 10, true, \is_int(123));
