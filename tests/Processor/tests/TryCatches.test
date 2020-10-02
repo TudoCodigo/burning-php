@@ -1,0 +1,23 @@
+Tests with try-catches.
+---
+<?php
+
+try {
+    is_int(123);
+}
+catch (\Exception $x) {
+    is_int(123);
+}
+finally {
+    is_int(123);
+}
+---
+<?php
+
+try {
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+} catch (\Exception $x) {
+    \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+} finally {
+    \burning_capture_return('{{__FILE__}}', 2, true, \is_int(123));
+}

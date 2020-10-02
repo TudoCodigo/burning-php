@@ -53,6 +53,7 @@ class ExpressionStatement
                BooleanStatement::apply($scopeManager, $node) ??
                AssignStatement::apply($scopeManager, $node) ??
                ArrayStatement::apply($scopeManager, $node) ??
+               TryCatchStatement::apply($scopeManager, $node) ??
                $node;
     }
 }
