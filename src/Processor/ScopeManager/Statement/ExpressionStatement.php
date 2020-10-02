@@ -23,6 +23,7 @@ class ExpressionStatement
                AssignStatement::apply($scopeManager, $node) ??
                ReturnStatement::apply($scopeManager, $node) ??
                ArrayStatement::apply($scopeManager, $node) ??
+               CastStatement::apply($scopeManager, $node) ??
                $node;
     }
 }
