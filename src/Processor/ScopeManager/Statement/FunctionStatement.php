@@ -16,19 +16,21 @@ class FunctionStatement
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
         if ($node instanceof Node\Expr\FuncCall) {
-            foreach ($node->args as $arg) {
-                $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
-            }
+            if (self::isApplicable($node)) {
+                foreach ($node->args as $arg) {
+                    $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
+                }
 
-            if ($node->name instanceof Node\Name) {
-                $functionName = $node->name->toString();
+                if ($node->name instanceof Node\Name) {
+                    $functionName = $node->name->toString();
 
-                $configuration = Configuration::getInstance();
+                    $configuration = Configuration::getInstance();
 
-                if (in_array($functionName, $configuration->returnsBooleanFunctions, true)) {
-                    $statementIndex = $scopeManager->processorFile->writeStatement(StatementTypeReturnsBoolean::class, $node, [ $functionName ]);
+                    if (in_array($functionName, $configuration->returnsBooleanFunctions, true)) {
+                        $statementIndex = $scopeManager->processorFile->writeStatement(StatementTypeReturnsBoolean::class, $node, [ $functionName ]);
 
-                    return Capture::createBurningCaptureReturnCall($scopeManager, $statementIndex, $node);
+                        return Capture::createBurningCaptureReturnCall($scopeManager, $statementIndex, $node);
+                    }
                 }
             }
         }

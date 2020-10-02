@@ -13,7 +13,7 @@ class FunctionLikeStatement
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
         if ($node instanceof Node\FunctionLike) {
-            self::applyStatements($scopeManager, $node->stmts, ExpressionStatement::class);
+            self::applyStatements($scopeManager, $node->getStmts(), ExpressionStatement::class);
         }
 
         return null;

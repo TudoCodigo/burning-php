@@ -17,6 +17,7 @@ class ExpressionStatement
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
+               FunctionLikeStatement::apply($scopeManager, $node) ??
                ConditionalStatement::apply($scopeManager, $node) ??
                LoopStatement::apply($scopeManager, $node) ??
                BooleanStatement::apply($scopeManager, $node) ??

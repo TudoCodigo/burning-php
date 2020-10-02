@@ -9,6 +9,19 @@ use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
 
 abstract class StatementAbstract
 {
+    protected static function isApplicable(Node $node): bool
+    {
+        $appliedKey = static::class . '@applied';
+
+        if (!$node->hasAttribute($appliedKey)) {
+            $node->setAttribute($appliedKey, true);
+
+            return true;
+        }
+
+        return false;
+    }
+
     abstract public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node;
 
     /**
