@@ -31,6 +31,13 @@ break is_int(123);
 break;
 continue is_int(123);
 continue;
+
+is_int(123)++;
+is_int(123)--;
+++is_int(123);
+--is_int(123);
++is_int(123);
+-is_int(123);
 ---
 <?php
 
@@ -51,3 +58,9 @@ break \burning_capture_return('{{__FILE__}}', 15, true, \is_int(123));
 break;
 continue \burning_capture_return('{{__FILE__}}', 16, true, \is_int(123));
 continue;
+\burning_capture_return('{{__FILE__}}', 17, true, \is_int(123))++;
+\burning_capture_return('{{__FILE__}}', 18, true, \is_int(123))--;
+++\burning_capture_return('{{__FILE__}}', 19, true, \is_int(123));
+--\burning_capture_return('{{__FILE__}}', 20, true, \is_int(123));
++\burning_capture_return('{{__FILE__}}', 21, true, \is_int(123));
+-\burning_capture_return('{{__FILE__}}', 22, true, \is_int(123));

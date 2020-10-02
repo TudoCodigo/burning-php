@@ -21,7 +21,9 @@ class ExpressionStatement
             $node instanceof Node\Expr\Eval_ ||
             $node instanceof Node\Expr\Exit_ ||
             $node instanceof Node\Expr\Include_ ||
-            $node instanceof Node\Expr\Print_) {
+            $node instanceof Node\Expr\Print_ ||
+            $node instanceof Node\Expr\UnaryMinus ||
+            $node instanceof Node\Expr\UnaryPlus) {
             $node->expr = self::apply($scopeManager, $node->expr);
         }
         else if ($node instanceof Node\Expr\Isset_ ||
@@ -35,6 +37,12 @@ class ExpressionStatement
         else if ($node instanceof Node\Stmt\Break_ ||
                  $node instanceof Node\Stmt\Continue_) {
             $node->num = self::apply($scopeManager, $node->num);
+        }
+        else if ($node instanceof Node\Expr\PostDec ||
+                 $node instanceof Node\Expr\PostInc ||
+                 $node instanceof Node\Expr\PreDec ||
+                 $node instanceof Node\Expr\PreInc) {
+            $node->var = self::apply($scopeManager, $node->var);
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
