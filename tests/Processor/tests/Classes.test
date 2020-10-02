@@ -11,6 +11,12 @@ class Test {
 
 new x(is_int(123));
 new $arr[is_int(123)];
+
+const X = is_int(123);
+
+class Test {
+    const X = is_int(123);
+}
 ---
 <?php
 
@@ -24,3 +30,8 @@ class Test
 }
 new \x(\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)));
 new $arr[\burning_capture_return('{{__FILE__}}', 3, true, \is_int(123))]();
+const X = \burning_capture_return('{{__FILE__}}', 4, true, \is_int(123));
+class Test
+{
+    const X = \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
+}
