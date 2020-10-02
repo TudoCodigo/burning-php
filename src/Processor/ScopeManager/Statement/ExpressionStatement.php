@@ -29,8 +29,12 @@ class ExpressionStatement
             $node->vars = self::applyStatements($scopeManager, $node->vars, self::class);
         }
         else if ($node instanceof Node\Expr\Instanceof_) {
-            $node->expr = self::apply($scopeManager, $node->expr);
+            $node->expr  = self::apply($scopeManager, $node->expr);
             $node->class = self::apply($scopeManager, $node->class);
+        }
+        else if ($node instanceof Node\Stmt\Break_ ||
+                 $node instanceof Node\Stmt\Continue_) {
+            $node->num = self::apply($scopeManager, $node->num);
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
