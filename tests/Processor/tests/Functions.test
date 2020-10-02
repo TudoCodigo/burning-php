@@ -28,6 +28,10 @@ $x->{is_int(123)};
 $x?->{is_int(123)};
 
 is_int(123)::{is_int(123)}(is_int(123));
+
+declare (x=is_int(123)) {
+    is_int(123);
+}
 ---
 <?php
 
@@ -49,3 +53,6 @@ $x?->{\burning_capture_return('{{__FILE__}}', 10, true, \is_int(123))}();
 $x->{\burning_capture_return('{{__FILE__}}', 11, true, \is_int(123))};
 $x?->{\burning_capture_return('{{__FILE__}}', 12, true, \is_int(123))};
 \burning_capture_return('{{__FILE__}}', 13, true, \is_int(123))::{\burning_capture_return('{{__FILE__}}', 14, true, \is_int(123))}(\burning_capture_return('{{__FILE__}}', 15, true, \is_int(123)));
+declare (x=\burning_capture_return('{{__FILE__}}', 16, true, \is_int(123))) {
+    \burning_capture_return('{{__FILE__}}', 17, true, \is_int(123));
+}

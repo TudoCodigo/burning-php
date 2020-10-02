@@ -59,6 +59,13 @@ class FunctionStatement
             $node->var  = ExpressionStatement::apply($scopeManager, $node->var);
             $node->name = ExpressionStatement::apply($scopeManager, $node->name);
         }
+        else if ($node instanceof Node\Stmt\Declare_) {
+            foreach ($node->declares as $declare) {
+                $declare->value = ExpressionStatement::apply($scopeManager, $declare->value);
+            }
+
+            self::applyStatements($scopeManager, $node->stmts, ExpressionStatement::class);
+        }
 
         return null;
     }
