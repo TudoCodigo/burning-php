@@ -24,7 +24,7 @@ class Processor
 
     private static function createParser(): Parser
     {
-        return (new ParserFactory)->create(ParserFactory::ONLY_PHP7, new Lexer([
+        return (new ParserFactory)->create(ParserFactory::PREFER_PHP7, new Lexer\Emulative([
             'usedAttributes' => [ 'startFilePos', 'endFilePos' ]
         ]));
     }

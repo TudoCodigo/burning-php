@@ -34,6 +34,11 @@ is_int(123) ? is_int(123) : is_int(123);
 $var = is_int(123) ? is_int(123) : is_int(123);
 $var += is_int(123) ? is_int(123) : is_int(123);
 is_int(123) ?: is_int(123);
+
+match (is_int(123)) {
+    is_int(123), is_int(123) => is_int(123),
+    default => is_int(123)
+};
 ---
 <?php
 
@@ -63,3 +68,7 @@ class Test
 $var = \burning_capture_return('{{__FILE__}}', 14, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 15, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 16, true, \is_int(123));
 $var += \burning_capture_return('{{__FILE__}}', 17, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 18, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 19, true, \is_int(123));
 \burning_capture_return('{{__FILE__}}', 20, true, \is_int(123)) ?: \burning_capture_return('{{__FILE__}}', 21, true, \is_int(123));
+match (\burning_capture_return('{{__FILE__}}', 22, true, \is_int(123))) {
+    \burning_capture_return('{{__FILE__}}', 23, true, \is_int(123)), \burning_capture_return('{{__FILE__}}', 24, true, \is_int(123)) => \burning_capture_return('{{__FILE__}}', 25, true, \is_int(123)),
+    default => \burning_capture_return('{{__FILE__}}', 26, true, \is_int(123)),
+};
