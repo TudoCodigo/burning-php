@@ -32,6 +32,15 @@ class ConditionalStatement
             $node->if   = ExpressionStatement::apply($scopeManager, $node->if);
             $node->else = ExpressionStatement::apply($scopeManager, $node->else);
         }
+        else if ($node instanceof Node\Stmt\Switch_) {
+            $node->cond = ExpressionStatement::apply($scopeManager, $node->cond);
+
+            foreach ($node->cases as $case) {
+                $case->cond = ExpressionStatement::apply($scopeManager, $case->cond);
+
+                self::applyStatements($scopeManager, $case->stmts, ExpressionStatement::class);
+            }
+        }
         else if ($node instanceof Node\Expr\Match_) {
             $node->cond = ExpressionStatement::apply($scopeManager, $node->cond);
 
