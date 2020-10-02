@@ -43,6 +43,11 @@ throw is_int(123);
 fn($x) => throw is_int(123);
 
 echo is_int(123);
+
+${is_int(123)} = $x;
+$x = ${is_int(123)};
+
+global ${is_int(123)};
 ---
 <?php
 
@@ -72,3 +77,6 @@ continue;
 throw \burning_capture_return('{{__FILE__}}', 23, true, \is_int(123));
 fn($x) => throw \burning_capture_return('{{__FILE__}}', 24, true, \is_int(123));
 echo \burning_capture_return('{{__FILE__}}', 25, true, \is_int(123));
+${\burning_capture_return('{{__FILE__}}', 26, true, \is_int(123))} = $x;
+$x = ${\burning_capture_return('{{__FILE__}}', 27, true, \is_int(123))};
+global ${\burning_capture_return('{{__FILE__}}', 28, true, \is_int(123))};

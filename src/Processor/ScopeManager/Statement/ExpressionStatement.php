@@ -29,7 +29,8 @@ class ExpressionStatement
             $node->expr = self::apply($scopeManager, $node->expr);
         }
         else if ($node instanceof Node\Expr\Isset_ ||
-                 $node instanceof Node\Stmt\Unset_) {
+                 $node instanceof Node\Stmt\Unset_ ||
+                 $node instanceof Node\Stmt\Global_) {
             $node->vars = self::applyStatements($scopeManager, $node->vars, self::class);
         }
         else if ($node instanceof Node\Expr\Instanceof_) {
@@ -48,6 +49,10 @@ class ExpressionStatement
         }
         else if ($node instanceof Node\Stmt\Echo_) {
             $node->exprs = self::applyStatements($scopeManager, $node->exprs, self::class);
+        }
+        else if ($node instanceof Node\Expr\Variable &&
+                 $node->name instanceof Node) {
+            $node->name = self::apply($scopeManager, $node->name);
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
