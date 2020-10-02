@@ -1,0 +1,11 @@
+Tests with magic constants.
+---
+<?php
+
+is_file(__DIR__);
+is_file(__FILE__);
+---
+<?php
+
+\burning_capture_return('{{__FILE__}}', 0, true, \is_file('{{__DIR__}}'));
+\burning_capture_return('{{__FILE__}}', 1, true, \is_file('{{__FILE__}}'));

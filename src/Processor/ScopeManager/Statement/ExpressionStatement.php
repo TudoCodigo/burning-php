@@ -22,6 +22,7 @@ class ExpressionStatement
                BooleanStatement::apply($scopeManager, $node) ??
                AssignStatement::apply($scopeManager, $node) ??
                ReturnStatement::apply($scopeManager, $node) ??
+               ArrayStatement::apply($scopeManager, $node) ??
                $node;
     }
 }

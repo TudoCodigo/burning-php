@@ -14,6 +14,7 @@ class AssignStatement
     {
         if ($node instanceof Node\Expr\Assign ||
             $node instanceof Node\Expr\AssignOp) {
+            $node->var  = ExpressionStatement::apply($scopeManager, $node->var);
             $node->expr = ExpressionStatement::apply($scopeManager, $node->expr);
         }
 

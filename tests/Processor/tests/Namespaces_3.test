@@ -1,4 +1,4 @@
-Testing burning_capture_return() inside a namespace with a local function.
+Tests with namespaces.
 ---
 <?php
 

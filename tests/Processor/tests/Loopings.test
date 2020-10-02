@@ -1,4 +1,4 @@
-Testing burning_capture_return() inside a loop.
+Tests with loopings.
 ---
 <?php
 

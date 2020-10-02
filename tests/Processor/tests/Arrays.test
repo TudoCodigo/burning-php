@@ -1,13 +1,13 @@
-Testing burning_capture_return() inside an array.
+Tests with arrays.
 ---
 <?php
 
 $arr[is_int(123)];
 $arr[is_int(123)] = 123;
-$arr[] = [is_int(123)];
+$arr[] = [is_int(123) => is_int(123)];
 ---
 <?php
 
 $arr[\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123))];
 $arr[\burning_capture_return('{{__FILE__}}', 1, true, \is_int(123))] = 123;
-$arr[] = [\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123))];
+$arr[] = [\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)) => \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123))];

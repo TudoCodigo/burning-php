@@ -1,4 +1,4 @@
-Testing burning_capture_return() inside a if().
+Tests with conditionals.
 ---
 <?php
 
@@ -29,6 +29,11 @@ class Test {
         }
     }
 }
+
+is_int(123) ? is_int(123) : is_int(123);
+$var = is_int(123) ? is_int(123) : is_int(123);
+$var += is_int(123) ? is_int(123) : is_int(123);
+is_int(123) ?: is_int(123);
 ---
 <?php
 
@@ -54,3 +59,7 @@ class Test
         }
     }
 }
+\burning_capture_return('{{__FILE__}}', 11, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 12, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 13, true, \is_int(123));
+$var = \burning_capture_return('{{__FILE__}}', 14, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 15, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 16, true, \is_int(123));
+$var += \burning_capture_return('{{__FILE__}}', 17, true, \is_int(123)) ? \burning_capture_return('{{__FILE__}}', 18, true, \is_int(123)) : \burning_capture_return('{{__FILE__}}', 19, true, \is_int(123));
+\burning_capture_return('{{__FILE__}}', 20, true, \is_int(123)) ?: \burning_capture_return('{{__FILE__}}', 21, true, \is_int(123));
