@@ -8,7 +8,8 @@ use PhpParser\Node;
 use TudoCodigo\BurningPHP\Capture\Capture;
 use TudoCodigo\BurningPHP\Configuration;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
-use TudoCodigo\BurningPHP\Processor\StatementTypes\StatementTypeReturnsBoolean;
+use TudoCodigo\BurningPHP\Processor\StatementTypes\StatementTypeFunctionReturnsBoolean;
+use TudoCodigo\BurningPHP\Processor\StatementTypes\StatementTypeMethodReturnsBoolean;
 
 class FunctionStatement
     extends StatementAbstract
@@ -27,9 +28,9 @@ class FunctionStatement
                     $configuration = Configuration::getInstance();
 
                     if (in_array($functionName, $configuration->returnsBooleanFunctions, true)) {
-                        $statementIndex = $scopeManager->processorFile->writeStatement(StatementTypeReturnsBoolean::class, $node, [ $functionName ]);
+                        $statementIndex = $scopeManager->processorFile->writeStatement(StatementTypeFunctionReturnsBoolean::class, $node, [ $functionName ]);
 
-                        return Capture::createBurningCaptureReturnCall($scopeManager, $statementIndex, $node);
+                        return Capture::createBurningCaptureFunctionReturnCall($scopeManager, $statementIndex, $node);
                     }
                 }
             }
@@ -47,11 +48,23 @@ class FunctionStatement
             $node->expr = ExpressionStatement::apply($scopeManager, $node->expr);
         }
         else if ($node instanceof Node\Expr\StaticCall) {
-            $node->class = ExpressionStatement::apply($scopeManager, $node->class);
-            $node->name  = ExpressionStatement::apply($scopeManager, $node->name);
+            if (self::isApplicable($node)) {
+                $node->class = ExpressionStatement::apply($scopeManager, $node->class);
+                $node->name  = ExpressionStatement::apply($scopeManager, $node->name);
 
-            foreach ($node->args as $arg) {
-                $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
+                foreach ($node->args as $arg) {
+                    $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
+                }
+
+                if ($node->name instanceof Node\Identifier &&
+                    $node->name->toString() !== '__construct') {
+                    if (!$node->class instanceof Node\Name ||
+                        $node->class->toString() !== 'parent') {
+                        $statementIndex = $scopeManager->processorFile->writeStatement(StatementTypeMethodReturnsBoolean::class, $node);
+
+                        return Capture::createBurningCaptureUserlandMethodReturnCall($scopeManager, $statementIndex, $node);
+                    }
+                }
             }
         }
         else if ($node instanceof Node\Expr\PropertyFetch ||

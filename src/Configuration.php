@@ -17,6 +17,7 @@ use TudoCodigo\BurningPHP\Support\Traits\SingletonPatternTrait;
  * @property bool        $disableXdebug
  *
  * @property string[]    $returnsBooleanFunctions
+ * @property string[]    $returnsBooleanMethods
  *
  * @property bool        $sessionLastDirectoryEnabled
  * @property string      $sessionDirectoryFormat

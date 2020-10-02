@@ -91,10 +91,14 @@ class CaptureSessionFile
     {
         $statement = $this->statements[$statementId];
 
+        if (!$statement->type::validate($arguments)) {
+            return;
+        }
+
         $callKey = $statementId . self::getCallKeyHash($statement->type, $arguments);
 
         if (!array_key_exists($callKey, $this->calls)) {
-            $this->calls[$callKey] = $statement->type::getCallInitialData();
+            $this->calls[$callKey] = $statement->type::getCallInitialData($arguments);
         }
 
         $statement->type::updateCallData($this->calls[$callKey], $arguments);

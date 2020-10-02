@@ -14,6 +14,8 @@ class ProcessorFile
 
     public string $hashFile;
 
+    public bool $persisted = false;
+
     public string $sourceDuplicatePath;
 
     public string $sourceOriginalPath;
@@ -49,11 +51,21 @@ class ProcessorFile
         $this->sourceDuplicatePath  = sprintf('%s%s_%s.php', $cachePath, $this->hash, $this->getBasename());
         $this->sourceProcessedPath  = $filehashPath . '.php';
         $this->sourceStatementsPath = $filehashPath . '.php.STATEMENTS';
+
+        $this->loadStatements();
+    }
+
+    private function loadStatements(): void
+    {
+        if (is_readable($this->sourceStatementsPath)) {
+            $this->persisted  = true;
+            $this->statements = json_decode(file_get_contents($this->sourceStatementsPath), true, 512, JSON_THROW_ON_ERROR);
+        }
     }
 
     private function writeStatementsStructure(): void
     {
-        if ($this->statements) {
+        if (!$this->persisted && $this->statements) {
             file_put_contents($this->sourceStatementsPath, json_encode($this->statements, JSON_THROW_ON_ERROR), LOCK_EX);
 
             stream_copy_to_stream($this->sourceOriginalResource, fopen($this->sourceDuplicatePath, 'wb'));
@@ -72,7 +84,7 @@ class ProcessorFile
 
     public function getExecutableSourcePath(): string
     {
-        if (!$this->statements) {
+        if (!$this->statements && !$this->persisted) {
             return $this->sourceOriginalPath;
         }
 

@@ -6,12 +6,14 @@ namespace TudoCodigo\BurningPHP\Capture;
 
 use PhpParser\BuilderFactory;
 use PhpParser\Node;
+use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Expr\StaticCall;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
 use TudoCodigo\BurningPHP\Support\Deterministic;
 
 class Capture
 {
-    public static function createBurningCaptureReturnCall(ScopeManager $scopeManager, int $statementIndex, Node\Expr\FuncCall $originalCall): Node\Expr\FuncCall
+    public static function createBurningCaptureFunctionReturnCall(ScopeManager $scopeManager, int $statementIndex, FuncCall $originalCall): FuncCall
     {
         $builderFactory = self::getBuilderFactory();
 
@@ -31,6 +33,31 @@ class Capture
             $builderFactory->val($statementIndex),
             $isReallyGlobalArgument ?? $builderFactory->val(true),
             $originalCall
+        ]);
+    }
+
+    public static function createBurningCaptureUserlandMethodReturnCall(ScopeManager $scopeManager, int $statementIndex, StaticCall $originalCall): FuncCall
+    {
+        $builderFactory = self::getBuilderFactory();
+
+        return $builderFactory->funcCall('\\burning_capture_method_return', [
+            $builderFactory->val($scopeManager->processorFile->sourceOriginalPath),
+            $builderFactory->val($statementIndex),
+            $builderFactory->val([
+                $originalCall->class instanceof Node\Name
+                    ? $builderFactory->classConstFetch($originalCall->class, 'class')
+                    : $originalCall->class,
+                $builderFactory->val($originalCall->name->toString())
+            ]),
+            array_map(static function (Node\Arg $arg) {
+                return new Node\Expr\ArrayItem(
+                    $arg->value,
+                    null,
+                    !$arg->unpack && $arg->value instanceof Node\Expr\Variable,
+                    [],
+                    $arg->unpack
+                );
+            }, $originalCall->args)
         ]);
     }
 

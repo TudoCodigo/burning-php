@@ -45,6 +45,10 @@ class Processor
     {
         $processorFile = new ProcessorFile($filePath);
 
+        if ($processorFile->persisted) {
+            return $processorFile;
+        }
+
         $fileStatements = $this->parser->parse(file_get_contents($filePath));
 
         $traverser = new NodeTraverser;

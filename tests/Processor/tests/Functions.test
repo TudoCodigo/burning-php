@@ -32,6 +32,10 @@ is_int(123)::{is_int(123)}(is_int(123));
 declare (x=is_int(123)) {
     is_int(123);
 }
+
+\User\X::method(123, $var = 123, $test, ... $unpack);
+$a::method(123);
+parent::__construct();
 ---
 <?php
 
@@ -56,3 +60,6 @@ $x?->{\burning_capture_function_return('{{__FILE__}}', 12, true, \is_int(123))};
 declare (x=\burning_capture_function_return('{{__FILE__}}', 16, true, \is_int(123))) {
     \burning_capture_function_return('{{__FILE__}}', 17, true, \is_int(123));
 }
+\burning_capture_method_return('{{__FILE__}}', 18, [\User\X::class, 'method'], [123, $var = 123, &$test, ...$unpack]);
+\burning_capture_method_return('{{__FILE__}}', 19, [$a, 'method'], [123]);
+parent::__construct();
