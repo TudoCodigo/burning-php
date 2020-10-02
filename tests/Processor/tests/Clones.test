@@ -1,0 +1,9 @@
+Tests with clones.
+---
+<?php
+
+clone is_int(123);
+---
+<?php
+
+clone \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
