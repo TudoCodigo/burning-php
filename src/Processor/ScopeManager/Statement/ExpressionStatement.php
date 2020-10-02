@@ -34,6 +34,7 @@ class ExpressionStatement
         }
 
         return FunctionStatement::apply($scopeManager, $node) ??
+               ClassStatement::apply($scopeManager, $node) ??
                FunctionLikeStatement::apply($scopeManager, $node) ??
                ConditionalStatement::apply($scopeManager, $node) ??
                LoopStatement::apply($scopeManager, $node) ??

@@ -15,6 +15,13 @@ class ClassStatement
         if ($node instanceof Node\Stmt\Class_) {
             self::applyStatements($scopeManager, $node->stmts, FunctionLikeStatement::class);
         }
+        else if ($node instanceof Node\Expr\New_) {
+            $node->class = ExpressionStatement::apply($scopeManager, $node->class);
+
+            foreach ($node->args as $arg) {
+                $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
+            }
+        }
 
         return null;
     }
