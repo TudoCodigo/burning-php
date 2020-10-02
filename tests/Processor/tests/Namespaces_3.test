@@ -8,8 +8,8 @@ function is_file($str) {
 }
 
 function test() {
-     \is_file('foo');
-     is_file('foo'); // not the global one
+     \is_int(123);
+     is_int(123); // not the global one
 }
 ---
 <?php
@@ -21,6 +21,6 @@ function is_file($str)
 }
 function test()
 {
-    \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
-    \burning_capture_return('{{__FILE__}}', 1, !function_exists('Test\\Subtest\\is_file'), is_file('foo'));
+    \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+    \burning_capture_return('{{__FILE__}}', 1, !function_exists('Test\\Subtest\\is_int'), is_int(123));
 }

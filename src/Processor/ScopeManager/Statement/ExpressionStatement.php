@@ -28,6 +28,10 @@ class ExpressionStatement
                  $node instanceof Node\Stmt\Unset_) {
             $node->vars = self::applyStatements($scopeManager, $node->vars, self::class);
         }
+        else if ($node instanceof Node\Expr\Instanceof_) {
+            $node->expr = self::apply($scopeManager, $node->expr);
+            $node->class = self::apply($scopeManager, $node->class);
+        }
 
         return FunctionStatement::apply($scopeManager, $node) ??
                FunctionLikeStatement::apply($scopeManager, $node) ??

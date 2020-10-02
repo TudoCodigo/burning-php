@@ -2,27 +2,27 @@ Tests with conditionals.
 ---
 <?php
 
-if (is_file('foo')) {
+if (is_int(123)) {
 }
 
 class Test {
     public function test() {
-        if (is_file('foo')) {
+        if (is_int(123)) {
         }
 
-        if (!is_file('foo')) {
+        if (!is_int(123)) {
         }
 
-        if (is_file('foo') || !is_file('foo')) {
+        if (is_int(123) || !is_int(123)) {
         }
 
-        if (is_file('foo') || !is_file('foo') || is_file('foo')) {
+        if (is_int(123) || !is_int(123) || is_int(123)) {
         }
-        elseif (is_file('foo')) {
-            is_file('foo');
+        elseif (is_int(123)) {
+            is_int(123);
         }
         else {
-            is_file('foo');
+            is_int(123);
         }
 
         if (!$var) {
@@ -37,23 +37,23 @@ is_int(123) ?: is_int(123);
 ---
 <?php
 
-if (\burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'))) {
+if (\burning_capture_return('{{__FILE__}}', 0, true, \is_int(123))) {
 }
 class Test
 {
     public function test()
     {
-        if (\burning_capture_return('{{__FILE__}}', 1, true, \is_file('foo'))) {
+        if (\burning_capture_return('{{__FILE__}}', 1, true, \is_int(123))) {
         }
-        if (!\burning_capture_return('{{__FILE__}}', 2, true, \is_file('foo'))) {
+        if (!\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123))) {
         }
-        if (\burning_capture_return('{{__FILE__}}', 3, true, \is_file('foo')) || !\burning_capture_return('{{__FILE__}}', 4, true, \is_file('foo'))) {
+        if (\burning_capture_return('{{__FILE__}}', 3, true, \is_int(123)) || !\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123))) {
         }
-        if (\burning_capture_return('{{__FILE__}}', 5, true, \is_file('foo')) || !\burning_capture_return('{{__FILE__}}', 6, true, \is_file('foo')) || \burning_capture_return('{{__FILE__}}', 7, true, \is_file('foo'))) {
-        } elseif (\burning_capture_return('{{__FILE__}}', 8, true, \is_file('foo'))) {
-            \burning_capture_return('{{__FILE__}}', 9, true, \is_file('foo'));
+        if (\burning_capture_return('{{__FILE__}}', 5, true, \is_int(123)) || !\burning_capture_return('{{__FILE__}}', 6, true, \is_int(123)) || \burning_capture_return('{{__FILE__}}', 7, true, \is_int(123))) {
+        } elseif (\burning_capture_return('{{__FILE__}}', 8, true, \is_int(123))) {
+            \burning_capture_return('{{__FILE__}}', 9, true, \is_int(123));
         } else {
-            \burning_capture_return('{{__FILE__}}', 10, true, \is_file('foo'));
+            \burning_capture_return('{{__FILE__}}', 10, true, \is_int(123));
         }
         if (!$var) {
         }

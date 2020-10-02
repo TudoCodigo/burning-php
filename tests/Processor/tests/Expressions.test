@@ -23,6 +23,9 @@ isset($arr[is_int(123)], $arr[is_int(123)]);
 print is_int(123);
 
 unset($arr[is_int(123)], $arr[is_int(123)]);
+
+is_int(123) instanceof ($var = is_int(123));
+$x instanceof \StdClass;
 ---
 <?php
 
@@ -37,3 +40,5 @@ include \burning_capture_return('{{__FILE__}}', 7, true, \is_int(123));
 isset($arr[\burning_capture_return('{{__FILE__}}', 8, true, \is_int(123))], $arr[\burning_capture_return('{{__FILE__}}', 9, true, \is_int(123))]);
 print \burning_capture_return('{{__FILE__}}', 10, true, \is_int(123));
 unset($arr[\burning_capture_return('{{__FILE__}}', 11, true, \is_int(123))], $arr[\burning_capture_return('{{__FILE__}}', 12, true, \is_int(123))]);
+\burning_capture_return('{{__FILE__}}', 13, true, \is_int(123)) instanceof ($var = \burning_capture_return('{{__FILE__}}', 14, true, \is_int(123)));
+$x instanceof \StdClass;

@@ -4,8 +4,8 @@ Tests with classes.
 
 class Test {
     public function test() {
-        \is_file('foo');
-        is_file('foo');
+        \is_int(123);
+        is_int(123);
     }
 }
 ---
@@ -15,7 +15,7 @@ class Test
 {
     public function test()
     {
-        \burning_capture_return('{{__FILE__}}', 0, true, \is_file('foo'));
-        \burning_capture_return('{{__FILE__}}', 1, true, \is_file('foo'));
+        \burning_capture_return('{{__FILE__}}', 0, true, \is_int(123));
+        \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
     }
 }
