@@ -23,7 +23,9 @@ class ExpressionStatement
             $node instanceof Node\Expr\Include_ ||
             $node instanceof Node\Expr\Print_ ||
             $node instanceof Node\Expr\UnaryMinus ||
-            $node instanceof Node\Expr\UnaryPlus) {
+            $node instanceof Node\Expr\UnaryPlus ||
+            $node instanceof Node\Stmt\Throw_ ||
+            $node instanceof Node\Expr\Throw_) {
             $node->expr = self::apply($scopeManager, $node->expr);
         }
         else if ($node instanceof Node\Expr\Isset_ ||
