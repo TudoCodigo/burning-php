@@ -7,7 +7,7 @@ namespace TudoCodigo\BurningPHP\Processor\ScopeManager\Statement;
 use PhpParser\Node;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
 
-class IfStatement
+class ConditionalStatement
     extends StatementAbstract
 {
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
@@ -18,20 +18,19 @@ class IfStatement
             foreach ($node->elseifs as $elseIf) {
                 $elseIf->cond = ExpressionStatement::apply($scopeManager, $elseIf->cond);
 
-                foreach ($elseIf->stmts as $stmt) {
-                    ExpressionStatement::apply($scopeManager, $stmt);
-                }
+                self::applyStatements($scopeManager, $elseIf->stmts, ExpressionStatement::class);
             }
 
             if ($node->else) {
-                foreach ($node->else->stmts as $stmt) {
-                    ExpressionStatement::apply($scopeManager, $stmt);
-                }
+                self::applyStatements($scopeManager, $node->else->stmts, ExpressionStatement::class);
             }
 
-            foreach ($node->stmts as $stmt) {
-                ExpressionStatement::apply($scopeManager, $stmt);
-            }
+            self::applyStatements($scopeManager, $node->stmts, ExpressionStatement::class);
+        }
+        else if ($node instanceof Node\Expr\Ternary) {
+            $node->cond = ExpressionStatement::apply($scopeManager, $node->cond);
+            $node->if   = ExpressionStatement::apply($scopeManager, $node->if);
+            $node->else = ExpressionStatement::apply($scopeManager, $node->else);
         }
 
         return null;

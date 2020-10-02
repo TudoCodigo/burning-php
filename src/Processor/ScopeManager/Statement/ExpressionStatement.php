@@ -16,13 +16,11 @@ class ExpressionStatement
             $node->expr = self::apply($scopeManager, $node->expr);
         }
 
-        return FunctionCallStatement::apply($scopeManager, $node) ??
-               IfStatement::apply($scopeManager, $node) ??
+        return FunctionStatement::apply($scopeManager, $node) ??
+               ConditionalStatement::apply($scopeManager, $node) ??
                LoopStatement::apply($scopeManager, $node) ??
-               BooleanNotStatement::apply($scopeManager, $node) ??
-               BooleanOpStatement::apply($scopeManager, $node) ??
-               TernaryStatement::apply($scopeManager, $node) ??
-               AssignOpStatement::apply($scopeManager, $node) ??
+               BooleanStatement::apply($scopeManager, $node) ??
+               AssignStatement::apply($scopeManager, $node) ??
                ReturnStatement::apply($scopeManager, $node) ??
                $node;
     }

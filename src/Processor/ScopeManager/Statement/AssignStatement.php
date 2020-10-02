@@ -7,15 +7,14 @@ namespace TudoCodigo\BurningPHP\Processor\ScopeManager\Statement;
 use PhpParser\Node;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
 
-class TernaryStatement
+class AssignStatement
     extends StatementAbstract
 {
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
-        if ($node instanceof Node\Expr\Ternary) {
-            $node->cond = ExpressionStatement::apply($scopeManager, $node->cond);
-            $node->if   = ExpressionStatement::apply($scopeManager, $node->if);
-            $node->else = ExpressionStatement::apply($scopeManager, $node->else);
+        if ($node instanceof Node\Expr\Assign ||
+            $node instanceof Node\Expr\AssignOp) {
+            $node->expr = ExpressionStatement::apply($scopeManager, $node->expr);
         }
 
         return null;

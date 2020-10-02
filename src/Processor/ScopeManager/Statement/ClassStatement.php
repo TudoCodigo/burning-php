@@ -13,9 +13,7 @@ class ClassStatement
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
         if ($node instanceof Node\Stmt\Class_) {
-            foreach ($node->stmts as $stmt) {
-                FunctionLikeStatement::apply($scopeManager, $stmt);
-            }
+            self::applyStatements($scopeManager, $node->stmts, FunctionLikeStatement::class);
         }
 
         return null;

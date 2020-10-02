@@ -10,7 +10,7 @@ use TudoCodigo\BurningPHP\Configuration;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\ScopeManager;
 use TudoCodigo\BurningPHP\Processor\StatementTypes\StatementTypeReturnsBoolean;
 
-class FunctionCallStatement
+class FunctionStatement
     extends StatementAbstract
 {
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node

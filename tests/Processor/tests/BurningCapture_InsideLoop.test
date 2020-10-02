@@ -9,6 +9,17 @@ for (;;) {
 foreach ([] as $a) {
     is_int(123);
 }
+
+while (is_int(123)) {
+    is_int(123);
+}
+
+do {
+    is_int(123);
+} while (is_int(123));
+
+for ($i = is_int(123); is_int(123); is_int(123)) {
+}
 ---
 <?php
 
@@ -17,4 +28,12 @@ for (;;) {
 }
 foreach ([] as $a) {
     \burning_capture_return('{{__FILE__}}', 1, true, \is_int(123));
+}
+while (\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123))) {
+    \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123));
+}
+do {
+    \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
+} while (\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123)));
+for ($i = \burning_capture_return('{{__FILE__}}', 6, true, \is_int(123)); \burning_capture_return('{{__FILE__}}', 7, true, \is_int(123)); \burning_capture_return('{{__FILE__}}', 8, true, \is_int(123))) {
 }

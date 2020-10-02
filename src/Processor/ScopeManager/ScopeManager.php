@@ -9,7 +9,7 @@ use TudoCodigo\BurningPHP\Processor\ProcessorFile;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ClassStatement;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ExpressionStatement;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\FunctionLikeStatement;
-use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\IfStatement;
+use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ConditionalStatement;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\NamespaceStatement;
 
 class ScopeManager
@@ -29,7 +29,7 @@ class ScopeManager
             ClassStatement::apply($this, $stmt) ||
             FunctionLikeStatement::apply($this, $stmt) ||
             ExpressionStatement::apply($this, $stmt) ||
-            IfStatement::apply($this, $stmt);
+            ConditionalStatement::apply($this, $stmt);
         }
     }
 }

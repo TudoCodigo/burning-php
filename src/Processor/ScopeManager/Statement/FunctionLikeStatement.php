@@ -12,11 +12,8 @@ class FunctionLikeStatement
 {
     public static function apply(ScopeManager $scopeManager, ?Node $node): ?Node
     {
-        if ($node instanceof Node\FunctionLike &&
-            $node->stmts) {
-            foreach ($node->stmts as $stmt) {
-                ExpressionStatement::apply($scopeManager, $stmt);
-            }
+        if ($node instanceof Node\FunctionLike) {
+            self::applyStatements($scopeManager, $node->stmts, ExpressionStatement::class);
         }
 
         return null;
