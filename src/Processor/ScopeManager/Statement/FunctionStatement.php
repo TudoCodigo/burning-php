@@ -37,6 +37,9 @@ class FunctionStatement
                 $arg->value = ExpressionStatement::apply($scopeManager, $arg->value);
             }
         }
+        else if ($node instanceof Node\Expr\ArrowFunction) {
+            $node->expr = ExpressionStatement::apply($scopeManager, $node->expr);
+        }
 
         return null;
     }

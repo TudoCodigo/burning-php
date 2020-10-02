@@ -12,6 +12,8 @@ call(is_int(123));
 return is_int(123);
 
 $this->call(is_int(123));
+
+fn($x) => is_int(123);
 ---
 <?php
 
@@ -23,3 +25,4 @@ function test()
 \call(\burning_capture_return('{{__FILE__}}', 2, true, \is_int(123)));
 return \burning_capture_return('{{__FILE__}}', 3, true, \is_int(123));
 $this->call(\burning_capture_return('{{__FILE__}}', 4, true, \is_int(123)));
+fn($x) => \burning_capture_return('{{__FILE__}}', 5, true, \is_int(123));
