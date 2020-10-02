@@ -41,6 +41,8 @@ is_int(123)--;
 
 throw is_int(123);
 fn($x) => throw is_int(123);
+
+echo is_int(123);
 ---
 <?php
 
@@ -69,3 +71,4 @@ continue;
 -\burning_capture_return('{{__FILE__}}', 22, true, \is_int(123));
 throw \burning_capture_return('{{__FILE__}}', 23, true, \is_int(123));
 fn($x) => throw \burning_capture_return('{{__FILE__}}', 24, true, \is_int(123));
+echo \burning_capture_return('{{__FILE__}}', 25, true, \is_int(123));

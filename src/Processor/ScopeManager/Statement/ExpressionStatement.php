@@ -46,6 +46,9 @@ class ExpressionStatement
                  $node instanceof Node\Expr\PreInc) {
             $node->var = self::apply($scopeManager, $node->var);
         }
+        else if ($node instanceof Node\Stmt\Echo_) {
+            $node->exprs = self::applyStatements($scopeManager, $node->exprs, self::class);
+        }
 
         return FunctionStatement::apply($scopeManager, $node) ??
                ClassStatement::apply($scopeManager, $node) ??
