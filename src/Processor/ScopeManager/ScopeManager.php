@@ -6,10 +6,7 @@ namespace TudoCodigo\BurningPHP\Processor\ScopeManager;
 
 use PhpParser\Node\Stmt;
 use TudoCodigo\BurningPHP\Processor\ProcessorFile;
-use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ClassStatement;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ExpressionStatement;
-use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\FunctionLikeStatement;
-use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\ConditionalStatement;
 use TudoCodigo\BurningPHP\Processor\ScopeManager\Statement\NamespaceStatement;
 
 class ScopeManager
@@ -26,10 +23,7 @@ class ScopeManager
         /** @var Stmt $stmt */
         foreach ($statements as $stmt) {
             NamespaceStatement::apply($this, $stmt) ||
-            ClassStatement::apply($this, $stmt) ||
-            FunctionLikeStatement::apply($this, $stmt) ||
-            ExpressionStatement::apply($this, $stmt) ||
-            ConditionalStatement::apply($this, $stmt);
+            ExpressionStatement::apply($this, $stmt);
         }
     }
 }
